@@ -10,7 +10,7 @@ CREATE TABLE Customers (
     Email VARCHAR(255) UNIQUE,
     City VARCHAR(50),
     [Address] VARCHAR(50),
-	MembershipType VARCHAR(50)
+	MembershipType VARCHAR(50) --Regular/CFRIEND/CVIP
 );
 
 
@@ -33,7 +33,7 @@ CREATE TABLE Movies (
 
 -- Create table Cinemas
 CREATE TABLE Cinemas (
-    CinemaID INT PRIMARY KEY IDENTITY(1,1),
+    CinemaID INT PRIMARY KEY,
     [Name] VARCHAR(255) NOT NULL,
     [Location] VARCHAR(255) NOT NULL,
     TotalScreens INT CHECK (TotalScreens > 0)
@@ -57,7 +57,7 @@ CREATE TABLE PaymentMethods (
 CREATE TABLE Booking (
 	BookingID VARCHAR(30) PRIMARY KEY,
 	CustomerID VARCHAR(10) NOT NULL,
-	BookingDate DATETIME DEFAULT CURRENT_TIMESTAMP, -- automatic current date
+	BookingDate DATETIME, -- automatic current date
 	TransactionStatus VARCHAR(20) CHECK (TransactionStatus IN ('Pending', 'Confirmed', 'Cancelled')),
 	FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
@@ -84,7 +84,7 @@ CREATE TABLE Transactions (
 
 -- Create table TicketPrice
 CREATE TABLE TicketPrice (
-	PriceID INT PRIMARY KEY IDENTITY(1,1),
+	PriceID INT PRIMARY KEY,
 	CinemaID INT,
 	BasePrice DECIMAL(10, 2),
 	AgeGroup INT,
@@ -106,26 +106,28 @@ CREATE TABLE Rooms (
 
 	-- Create table Seats
 CREATE TABLE Seats (
-	SeatID VARCHAR(20) NOT NULL,
+	SeatID VARCHAR(20) PRIMARY KEY,
 	RoomID VARCHAR(10) NOT NULL,
-	SeatNumber INT UNIQUE NOT NULL,
+	SeatNumber INT NOT NULL,
 	[Row] CHAR(1),
 	[Status] BIT,
-	[Type] INT,
+	[Type] CHAR(1),
 
 	CONSTRAINT FK_Room FOREIGN KEY (RoomID) REFERENCES Rooms(RoomID),
 	CONSTRAINT UQ_Room_Seat UNIQUE (RoomID, SeatNumber, [Row]) --  dam bao cac ghe la duy nhat cho moi roomID
 );
 
 
+
 -- Create table ShowTimes
 CREATE TABLE ShowTimes (
-	ShowTimeID INT PRIMARY KEY IDENTITY(1,1), 
+	ShowTimeID INT PRIMARY KEY, 
 	MovieID INT NOT NULL,
-	StartTime DATETIME,
+	StartTime VARCHAR(10),
 
 	FOREIGN KEY (MovieID) REFERENCES Movies(MovieID)
 );
+
 
 -- Create table Ticket
 CREATE TABLE Ticket (
@@ -140,7 +142,6 @@ CREATE TABLE Ticket (
 	FOREIGN KEY (SeatID) REFERENCES Seats(SeatID),
 	FOREIGN KEY (MovieID) REFERENCES Movies(MovieID),
 	FOREIGN KEY (ShowTimeID) REFERENCES ShowTimes(ShowTimeID)
-
 );
 
 
@@ -169,7 +170,6 @@ CREATE TABLE DetailBooking (
 	FOREIGN KEY (ProductID) REFERENCES Ticket(TicketID),
 	PRIMARY KEY (BookingID, ProductID) -- Trong truong hop co nhieu phan loai hang
 );
-
 
 
 
