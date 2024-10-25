@@ -58,7 +58,7 @@ CREATE TABLE Booking (
 	BookingID VARCHAR(30) PRIMARY KEY,
 	CustomerID VARCHAR(10) NOT NULL,
 	TransactionDate DATETIME, -- automatic current date
-	TransactionStatus VARCHAR(20) CHECK (TransactionStatus IN ('Pending', 'Confirmed', 'Cancelled')),
+	BookingDate DATETIME DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
 
