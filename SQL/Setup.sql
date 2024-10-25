@@ -57,7 +57,7 @@ CREATE TABLE PaymentMethods (
 CREATE TABLE Booking (
 	BookingID VARCHAR(30) PRIMARY KEY,
 	CustomerID VARCHAR(10) NOT NULL,
-	BookingDate DATETIME, -- automatic current date
+	TransactionDate DATETIME, -- automatic current date
 	TransactionStatus VARCHAR(20) CHECK (TransactionStatus IN ('Pending', 'Confirmed', 'Cancelled')),
 	FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
@@ -67,10 +67,8 @@ CREATE TABLE Booking (
 CREATE TABLE Transactions (
     TransactionID VARCHAR(10) PRIMARY KEY,
     BookingID VARCHAR(30) NOT NULL,
-    --FinalAmount DECIMAL(10, 2), -- sua lai cach tinh quantity * pricePerUnit
 	FinalAmount DECIMAL(10, 2) NULL,
     DiscountID VARCHAR(10) NULL,
-    TransactionDate DATETIME DEFAULT CURRENT_TIMESTAMP,
     PaymentMethodID INT,
 	CustomerID VARCHAR(10),
 
@@ -79,10 +77,6 @@ CREATE TABLE Transactions (
     FOREIGN KEY (PaymentMethodID) REFERENCES PaymentMethods(PaymentMethodID),
 	FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
-
-ALTER TABLE Transactions
-alter column DiscountID
-
 
 -- Create table TicketPrice
 CREATE TABLE TicketPrice (
