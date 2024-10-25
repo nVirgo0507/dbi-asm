@@ -16,15 +16,15 @@ CREATE TABLE Customers (
 
 -- Create table Movies
 CREATE TABLE Movies (
-    MovieID INT PRIMARY KEY,
-    Title VARCHAR(255),
-    Duration INT,
-    Subtitle BIT,
-    Director VARCHAR(50),
-    [Description] VARCHAR(500),
-    [Language] VARCHAR(50),
-    ReleaseDate DATETIME,
-    TrailerURL VARCHAR(255),
+	MovieID INT PRIMARY KEY,
+	Title VARCHAR(255),
+	Duration INT,
+	Subtitle BIT,
+	Director VARCHAR(50),
+	[Description] VARCHAR(500),
+	[Language] VARCHAR(50),
+	ReleaseDate DATETIME,
+	TrailerURL VARCHAR(255),
 	AgeRestriction INT,
 	Genre VARCHAR(50),
 );
@@ -33,24 +33,24 @@ CREATE TABLE Movies (
 
 -- Create table Cinemas
 CREATE TABLE Cinemas (
-    CinemaID INT PRIMARY KEY,
-    [Name] VARCHAR(255) NOT NULL,
-    [Location] VARCHAR(255) NOT NULL,
-    TotalScreens INT CHECK (TotalScreens > 0)
+	CinemaID INT PRIMARY KEY,
+	[Name] VARCHAR(255) NOT NULL,
+	[Location] VARCHAR(255) NOT NULL,
+	TotalScreens INT CHECK (TotalScreens > 0)
 );
 
 -- Create table Discounts
 CREATE TABLE Discounts (
-    DiscountID VARCHAR(10) PRIMARY KEY,
-    [Description] VARCHAR(255),
-    DiscountValue DECIMAL(10, 2),
+	DiscountID VARCHAR(10) PRIMARY KEY,
+	[Description] VARCHAR(255),
+	DiscountValue DECIMAL(10, 2),
 );
 
 -- Create table PaymentMethods
 CREATE TABLE PaymentMethods (
-    PaymentMethodID INT PRIMARY KEY,
-    MethodName VARCHAR(50),
-    [Description] VARCHAR(255)
+	PaymentMethodID INT PRIMARY KEY,
+	MethodName VARCHAR(50),
+	[Description] VARCHAR(255)
 );
 
 -- Create table Booking
@@ -65,16 +65,16 @@ CREATE TABLE Booking (
 
 -- Create table Transactions
 CREATE TABLE Transactions (
-    TransactionID VARCHAR(10) PRIMARY KEY,
-    BookingID VARCHAR(30) NOT NULL,
+	TransactionID VARCHAR(10) PRIMARY KEY,
+	BookingID VARCHAR(30) NOT NULL,
 	FinalAmount DECIMAL(10, 2) NULL,
-    DiscountID VARCHAR(10) NULL,
-    PaymentMethodID INT,
+	DiscountID VARCHAR(10) NULL,
+	PaymentMethodID INT,
 	CustomerID VARCHAR(10),
 
-    FOREIGN KEY (BookingID) REFERENCES Booking(BookingID),
-    FOREIGN KEY (DiscountID) REFERENCES Discounts(DiscountID),
-    FOREIGN KEY (PaymentMethodID) REFERENCES PaymentMethods(PaymentMethodID),
+	FOREIGN KEY (BookingID) REFERENCES Booking(BookingID),
+	FOREIGN KEY (DiscountID) REFERENCES Discounts(DiscountID),
+	FOREIGN KEY (PaymentMethodID) REFERENCES PaymentMethods(PaymentMethodID),
 	FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
 
