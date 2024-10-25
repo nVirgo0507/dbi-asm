@@ -80,6 +80,8 @@ CREATE TABLE Transactions (
 	FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
 
+ALTER TABLE Transactions
+alter column DiscountID
 
 
 -- Create table TicketPrice
@@ -128,6 +130,41 @@ CREATE TABLE ShowTimes (
 	FOREIGN KEY (MovieID) REFERENCES Movies(MovieID)
 );
 
+-- Create table DetailBooking
+CREATE TABLE DetailBooking (
+	DetailBookingID INT PRIMARY KEY,
+	BookingID VARCHAR(30) NOT NULL,
+	TicketID VARCHAR(30) NULL, -- Nullable
+	FoodID VARCHAR(30) NULL, -- Nullable
+	PricePerUnit DECIMAL(10, 2),
+	Quantity INT,
+	ProductType VARCHAR(20) NOT NULL, -- Values 'Ticket' or 'Food'
+
+
+	-- Foreign key
+	FOREIGN KEY (BookingID) REFERENCES Booking(BookingID),
+	FOREIGN KEY (TicketID) REFERENCES Ticket(TicketID),
+	FOREIGN KEY (FoodID) REFERENCES FoodAndBeverages(FoodID), -- reference to either FoodAndBeverages or Ticket
+
+	-- 1 of them is not null
+	CONSTRAINT CHK_TicketOrFood CHECK (TicketID IS NOT NULL OR FoodID IS NOT NULL),
+
+	-- Ensure ProductType aligns with either TicketID or FoodID
+	CONSTRAINT CHK_ProductType CHECK (
+	    (ProductType = 'Ticket' AND TicketID IS NOT NULL AND FoodID IS NULL) OR 
+	    (ProductType = 'Food' AND FoodID IS NOT NULL AND TicketID IS NULL)
+	),
+
+	CONSTRAINT UQ_Booking_TicketFood UNIQUE (BookingID, TicketID, FoodID)
+
+	--CONSTRAINT UQ_Booking_Ticket UNIQUE (BookingID, TicketID),
+    --CONSTRAINT UQ_Booking_Food UNIQUE (BookingID, FoodID), -- Unique composite key -- Trong truong hop co nhieu phan loai hang
+
+);
+
+alter table DetailBooking
+ADD CONSTRAINT UQ_Booking_TicketFood UNIQUE (BookingID, TicketID, FoodID)
+
 
 -- Create table Ticket
 CREATE TABLE Ticket (
@@ -147,7 +184,7 @@ CREATE TABLE Ticket (
 
 -- Create table FoodAndBeverages
 CREATE TABLE FoodAndBeverages (
-	ProductID VARCHAR(30) PRIMARY KEY,
+	FoodID VARCHAR(30) PRIMARY KEY,
 	CinemaID INT NOT NULL,
 	ProductName VARCHAR(255),
 	Category VARCHAR(255),
@@ -155,22 +192,5 @@ CREATE TABLE FoodAndBeverages (
 
 	FOREIGN KEY (CinemaID) REFERENCES Cinemas(CinemaID)
 );
-
-
--- Create table DetailBooking
-CREATE TABLE DetailBooking (
-	BookingID VARCHAR(30) NOT NULL,
-	ProductID VARCHAR(30) NOT NULL,
-	PricePerUnit DECIMAL(10, 2),
-	Quantity INT,
-	ProductType VARCHAR(20) NOT NULL,
-
-	FOREIGN KEY (BookingID) REFERENCES Booking(BookingID),
-	FOREIGN KEY (ProductID) REFERENCES FoodAndBeverages(ProductID), -- reference to either FoodAndBeverages or Ticket
-	FOREIGN KEY (ProductID) REFERENCES Ticket(TicketID),
-	PRIMARY KEY (BookingID, ProductID) -- Trong truong hop co nhieu phan loai hang
-);
-
-
 
 
