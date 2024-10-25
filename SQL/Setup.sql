@@ -6,7 +6,7 @@ CREATE TABLE Customers (
 	[FirstName] NVARCHAR(45) NOT NULL,
 	[LastName] NVARCHAR(45) NOT NULL,
 	Gender CHAR(1) NOT NULL CHECK (Gender IN ('M', 'F')),
-    Phone CHAR(10) UNIQUE,
+	Phone CHAR(10) UNIQUE,
 	Email VARCHAR(255) UNIQUE,
 	City VARCHAR(50),
 	[Address] VARCHAR(50),
