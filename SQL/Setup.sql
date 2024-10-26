@@ -5,7 +5,7 @@ CREATE TABLE Customers (
 	Username NVARCHAR(45) NOT NULL,
 	[FirstName] NVARCHAR(45) NOT NULL,
 	[LastName] NVARCHAR(45) NOT NULL,
-	Gender CHAR(1) NOT NULL CHECK (Gender IN ('M', 'F')),
+	Gender CHAR(1) NOT NULL,
 	Phone CHAR(10) UNIQUE,
 	Email VARCHAR(255) UNIQUE,
 	City VARCHAR(50),
@@ -155,9 +155,6 @@ CREATE TABLE DetailBooking (
     --CONSTRAINT UQ_Booking_Food UNIQUE (BookingID, FoodID), -- Unique composite key -- Trong truong hop co nhieu phan loai hang
 
 );
-
-alter table DetailBooking
-ADD CONSTRAINT UQ_Booking_TicketFood UNIQUE (BookingID, TicketID, FoodID)
 
 
 -- Create table Ticket
