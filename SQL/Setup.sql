@@ -25,7 +25,7 @@ CREATE TABLE Movies (
 	[Language] VARCHAR(50),
 	ReleaseDate DATETIME,
 	TrailerURL VARCHAR(255),
-	AgeRestriction INT,
+	AgeRestriction VARCHAR(3),
 	Genre VARCHAR(50),
 );
 
@@ -36,7 +36,7 @@ CREATE TABLE Cinemas (
 	CinemaID INT PRIMARY KEY,
 	[Name] VARCHAR(255) NOT NULL,
 	[Location] VARCHAR(255) NOT NULL,
-	TotalScreens INT CHECK (TotalScreens > 0)
+	TotalScreens INT NOT NULL,
 );
 
 -- Create table Discounts
@@ -93,7 +93,7 @@ CREATE TABLE TicketPrice (
 CREATE TABLE Rooms (
 	RoomID VARCHAR(10) PRIMARY KEY,
 	CinemaID INT,
-	Capacity INT CHECK (Capacity > 0),
+	Capacity INT,
 
 	FOREIGN KEY (CinemaID) REFERENCES Cinemas(CinemaID)
 );
