@@ -937,14 +937,14 @@ select * from Movies
 -- Movies
 INSERT INTO Movies (MovieID, Title, Duration, Subtitle, Director, [Description], [Language], ReleaseDate, TrailerURL, AgeRestriction, Genre)
 VALUES 
-(1, 'Inception', 148, 1, 'Christopher Nolan', 'A thief who steals corporate secrets through dream-sharing technology.', 'English', '2010-07-16', 'https://www.youtube.com/watch?v=YoHD9XEInc0', 13, 'Sci-Fi'),
-(2, 'The Shawshank Redemption', 142, 0, 'Frank Darabont', 'Two imprisoned men bond over a number of years.', 'English', '1994-09-23', 'https://www.youtube.com/watch?v=6hB3S9bIaco', 18, 'Drama'),
-(3, 'The Dark Knight', 152, 1, 'Christopher Nolan', 'The Joker emerges from his mysterious past.', 'English', '2008-07-18', 'https://www.youtube.com/watch?v=EXeTwQWrcwY', 13, 'Action'),
-(4, 'Pulp Fiction', 154, 0, 'Quentin Tarantino', 'The lives of two mob hitmen, a boxer, a gangsters wife', 'English', '1994-10-14', 'https://www.youtube.com/watch?v=s7EdQ4FqBHs', 18, 'Crime'),
-(5, 'Forrest Gump', 142, 0, 'Robert Zemeckis', 'The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal, and other historical events unfold through the perspective of an Alabama man.', 'English', '1994-07-06', 'https://www.youtube.com/watch?v=bLvqoHBptjg', 13, 'Drama'),
-(6, 'The Matrix', 136, 1, 'The Wachowskis', 'A computer hacker learns about the true nature of his reality.', 'English', '1999-03-31', 'https://www.youtube.com/watch?v=vKQi0pVi908', 13, 'Sci-Fi'),
-(7, 'Interstellar', 169, 1, 'Christopher Nolan', 'A team of explorers travel through a wormhole in space.', 'English', '2014-11-07', 'https://www.youtube.com/watch?v=zSWdZVtXT7E', 13, 'Adventure'),
-(8, 'The Silence of the Lambs', 118, 0, 'Jonathan Demme', 'A young FBI cadet must confide in an incarcerated and manipulative killer to catch another serial killer.', 'English', '1991-02-14', 'https://www.youtube.com/watch?v=4Nf1_KhAs0Y', 18, 'Thriller');
+(1, 'Inception', 148, 1, 'Christopher Nolan', 'A thief who steals corporate secrets through dream-sharing technology.', 'English', '2010-07-16', 'https://www.youtube.com/watch?v=YoHD9XEInc0', 'T13', 'Sci-Fi'),
+(2, 'The Shawshank Redemption', 142, 0, 'Frank Darabont', 'Two imprisoned men bond over a number of years.', 'English', '1994-09-23', 'https://www.youtube.com/watch?v=6hB3S9bIaco', 'T18', 'Drama'),
+(3, 'The Dark Knight', 152, 1, 'Christopher Nolan', 'The Joker emerges from his mysterious past.', 'English', '2008-07-18', 'https://www.youtube.com/watch?v=EXeTwQWrcwY', 'T13', 'Action'),
+(4, 'Pulp Fiction', 154, 0, 'Quentin Tarantino', 'The lives of two mob hitmen, a boxer, a gangsters wife', 'English', '1994-10-14', 'https://www.youtube.com/watch?v=s7EdQ4FqBHs', 'T18', 'Crime'),
+(5, 'Forrest Gump', 142, 0, 'Robert Zemeckis', 'The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal, and other historical events unfold through the perspective of an Alabama man.', 'English', '1994-07-06', 'https://www.youtube.com/watch?v=bLvqoHBptjg', 'T13', 'Drama'),
+(6, 'The Matrix', 136, 1, 'The Wachowskis', 'A computer hacker learns about the true nature of his reality.', 'English', '1999-03-31', 'https://www.youtube.com/watch?v=vKQi0pVi908', 'T13', 'Sci-Fi'),
+(7, 'Interstellar', 169, 1, 'Christopher Nolan', 'A team of explorers travel through a wormhole in space.', 'English', '2014-11-07', 'https://www.youtube.com/watch?v=zSWdZVtXT7E', 'T18', 'Adventure'),
+(8, 'The Silence of the Lambs', 118, 0, 'Jonathan Demme', 'A young FBI cadet must confide in an incarcerated and manipulative killer to catch another serial killer.', 'English', '1991-02-14', 'https://www.youtube.com/watch?v=4Nf1_KhAs0Y', 'T18', 'Thriller');
 
 
 -- ========== DETAIL BOOKING ========== --
